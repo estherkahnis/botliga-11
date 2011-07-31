@@ -17,7 +17,7 @@ class Botliga
 
   def self.send_result match_id, result
     token = 'sotbt8ndvud3c1vgpyyxgh29'
-    http = Net::HTTP.new('botliga-11.de', 80)
+    http = Net::HTTP.new('botliga.de', 80)
     response, data = http.post('/api/guess', "match_id=#{match_id}&result=#{result}&token=#{token}")
     puts "#{response.code} #{data}"
   end
