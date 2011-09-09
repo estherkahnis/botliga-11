@@ -19,8 +19,8 @@ class TableCalculator
 
       result[host_id] = 0 unless result.has_key? host_id
       result[guest_id] = 0 unless result.has_key? guest_id
-      result[host_id] =+calculate_points(host_goals, guest_goals)
-      result[guest_id] =+calculate_points(guest_goals, host_goals)
+      result[host_id] = result[host_id] + calculate_points(host_goals, guest_goals)
+      result[guest_id] = result[guest_id] + calculate_points(guest_goals, host_goals)
     end
 
     result

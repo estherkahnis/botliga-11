@@ -5,15 +5,15 @@ require '../src/calculator'
 
 describe Calculator, "#calculate_results" do
   it "should return the calculated results" do
-    matches = [finished_match, unfinished_match]
+    matches = [finished_match_1, unfinished_match]
     calculator = Calculator.new matches
     result = calculator.calculate_results
     result['14008'].should == nil
-    result['14009'].should == "2:1"
+    result['14009'].should == "1:0"
   end
 end
 
-def finished_match
+def finished_match_1
   {
       "group" => 1,
       "guestName" => "Hamburger SV",
@@ -34,11 +34,11 @@ def unfinished_match
       "guestName" => "Hamburger SV",
       "_id" => "4e06601d6f1764ac3ad869a5",
       "date" => "2011-08-05T18:30:00.000Z",
-      "hostId" => 7,
+      "hostId" => 1,
       "id" => "14009",
       "season" => "2011",
       "hostGoals" => nil,
-      "guestId" => 100,
+      "guestId" => 2,
       "hostName" => "Borussia Dortmund",
       "guestGoals" => nil}
 end

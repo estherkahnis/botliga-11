@@ -1,3 +1,5 @@
+# botliga.rb
+
 require "rubygems"
 require 'json'
 require 'net/http'
