@@ -11,11 +11,64 @@ describe Calculator, "#calculate_results" do
     result['14008'].should == nil
     result['14009'].should == "1:0"
   end
+
+  it "should return a difference not greater than three" do
+    matches = [finished_match_1, finished_match_2, finished_match_3, finished_match_4, unfinished_match]
+    calculator = Calculator.new matches
+    result = calculator.calculate_results
+    result['14009'].should == "3:0"
+  end
+
 end
 
 def finished_match_1
   {
       "group" => 1,
+      "guestName" => "Hamburger SV",
+      "_id" => "4e06601d6f1764ac3ad869a5",
+      "date" => "2011-08-05T18:30:00.000Z",
+      "hostId" => 1,
+      "id" => "14008",
+      "season" => "2011",
+      "hostGoals" => 3,
+      "guestId" => 2,
+      "hostName" => "Borussia Dortmund",
+      "guestGoals" => 1}
+end
+
+def finished_match_2
+  {
+      "group" => 2,
+      "guestName" => "Hamburger SV",
+      "_id" => "4e06601d6f1764ac3ad869a5",
+      "date" => "2011-08-05T18:30:00.000Z",
+      "hostId" => 1,
+      "id" => "14008",
+      "season" => "2011",
+      "hostGoals" => 3,
+      "guestId" => 2,
+      "hostName" => "Borussia Dortmund",
+      "guestGoals" => 1}
+end
+
+def finished_match_3
+  {
+      "group" => 3,
+      "guestName" => "Hamburger SV",
+      "_id" => "4e06601d6f1764ac3ad869a5",
+      "date" => "2011-08-05T18:30:00.000Z",
+      "hostId" => 1,
+      "id" => "14008",
+      "season" => "2011",
+      "hostGoals" => 3,
+      "guestId" => 2,
+      "hostName" => "Borussia Dortmund",
+      "guestGoals" => 1}
+end
+
+def finished_match_4
+  {
+      "group" => 4,
       "guestName" => "Hamburger SV",
       "_id" => "4e06601d6f1764ac3ad869a5",
       "date" => "2011-08-05T18:30:00.000Z",
