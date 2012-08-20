@@ -7,6 +7,7 @@ require "calculator"
 
 class Botliga
 
+  YEAR = '2012'
   TOKEN = 'sotbt8ndvud3c1vgpyyxgh29'
 
   def send_tip
@@ -18,31 +19,25 @@ class Botliga
   private
 
   def retrieve_matches
-    url = "http://botliga.de/api/matches/2011"
+    url = "http://botliga.de/api/matches/#{YEAR}"
     response = Net::HTTP.get_response(URI.parse(url))
     JSON.parse(response.body)
   end
 
   def send_results results
-    results.each { |key, value| send_result key, value }
+    results.each_with_index do |(key, value), index|
+      send_result key, value
+      print (index + 1) % 100 != 0 ? "." : ".\n"
+    end
   end
 
   def send_result match_id, result
     http = Net::HTTP.new('botliga.de', 80)
     response, data = http.post('/api/guess', "match_id=#{match_id}&result=#{result}&token=#{TOKEN}")
-    puts "#{response.code} #{data}"
+    puts "#{response.code} #{data}" unless response.code == '200'
   end
 
 end
 
 Botliga.new.send_tip
 
-
-# Aktueller Spieltag
-# http://openligadb-json.heroku.com/api/current_group?league_shortcut=bl1
-
-# Spieldaten für einen Spieltag
-# http://openligadb-json.heroku.com/api/matchdata_by_group_league_saison?league_shortcut=bl1&league_saison=2011&group_order_id=2
-
-# Alle Spiele
-# http://openligadb-json.heroku.com/api/matchdata_by_league_saison?league_saison=2011&league_shortcut=bl1

@@ -25,7 +25,10 @@ class Calculator
   def calculate_result match, table
     host_id = match['hostId']
     guest_id = match['guestId']
-    table_difference = table[host_id] - table[guest_id]
+
+    host_points = table[host_id]
+    guest_points = table[guest_id]
+    table_difference = host_points ? host_points - guest_points : 0
 
     host_goals = (table_difference > 0 ? table_difference.abs / 4 : 0) + 1
     guest_goals = table_difference < 0 ? table_difference.abs / 4 : 0
